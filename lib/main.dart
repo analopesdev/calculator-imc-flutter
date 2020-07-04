@@ -1,7 +1,6 @@
 import 'package:calculadora_imc/pessoa.dart';
 import 'package:flutter/material.dart';
 
-//enum SingingCharacter { masculino, feminino }
 String _character = "masculino";
 
 void main() => runApp(MaterialApp(
