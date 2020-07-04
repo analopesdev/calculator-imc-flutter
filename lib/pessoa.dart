@@ -1,68 +1,71 @@
 import 'package:flutter/material.dart';
 
-//
 class Pessoa {
-  String mensagem;
-  String resultado;
+  double peso;
+  double altura;
   String genero;
-  double altura, peso;
-  Color color;
   double imc;
+  Color cor;
 
-  Pessoa(
-      {this.mensagem,
-      this.altura,
-      this.peso,
-      this.genero,
-      this.imc,
-      this.resultado});
-
-  calcularImc() {
-    double calculoImc;
-    calculoImc = this.peso / (this.altura * this.altura);
-    imc = calculoImc;
-    return calculoImc;
+  void setPeso(double peso) {
+    this.peso = peso;
   }
 
-  void mensagemMasc() {
-    mensagem = "";
-    if (imc < 20.7) {
-      mensagem += "Abaixo do peso";
-      color = Colors.blue;
-    } else if (imc < 26.5) {
-      mensagem += "Peso ideal";
-      color = Colors.green;
-    } else if (imc < 27.9) {
-      mensagem += "Levemente acima do peso";
-      color = Colors.yellow;
-    } else if (imc < 31.1) {
-      mensagem += "Acima do peso";
-      color = Colors.orange;
-    } else {
-      mensagem += "Obesidade";
-      color = Colors.red;
-    }
-    resultado = "IMC = ${imc.toStringAsPrecision(2)}";
+  void setAltura(double altura) {
+    this.altura = altura;
   }
 
-  void mensagemFem() {
-    mensagem = "";
-    if (imc < 19.1) {
-      mensagem = "Abaixo do peso";
-      color = Colors.blue;
-    } else if (imc < 25.8) {
-      mensagem = "Peso ideal";
-      color = Colors.green;
-    } else if (imc < 27.3) {
-      mensagem += "Levemente acima do peso";
-      color = Colors.yellow;
-    } else if (imc < 32.3) {
-      mensagem += "Acima do peso";
-      color = Colors.orange;
+  void setGenero(String genero) {
+    this.genero = genero;
+  }
+
+  String calcula() {
+    double weight = peso;
+    double height = altura / 100.0;
+    this.imc = weight / (height * height);
+
+    return this.imc.toStringAsPrecision(2);
+  }
+
+  String classifica() {
+    if (genero == "masculino") {
+      if (imc < 20.7) {
+        this.cor = Colors.black;
+        return "Abaixo do peso";
+      } else if (imc >= 20.7 && imc < 26.5) {
+        this.cor = Colors.green;
+        return "Peso ideal";
+      } else if (imc >= 26.5 && imc < 27.9) {
+        this.cor = Colors.yellow;
+        return "Pouco acima do peso";
+      } else if (imc >= 27.9 && imc < 31.2) {
+        this.cor = Colors.orange;
+        return "Acima do peso";
+      } else if (imc > 31.1) {
+        this.cor = Colors.red;
+        return "Obesidade";
+      }
     } else {
-      mensagem += "Obesidade ";
-      color = Colors.red;
+      if (imc < 19.1) {
+        this.cor = Colors.black;
+        return "Abaixo do peso";
+      } else if (imc >= 19.1 && imc < 25.9) {
+        this.cor = Colors.green;
+        return "Peso ideal";
+      } else if (imc >= 25.9 && imc < 27.4) {
+        this.cor = Colors.yellow;
+        return "Pouco acima do peso";
+      } else if (imc >= 27.4 && imc < 32.4) {
+        this.cor = Colors.orange;
+        return "Acima do peso";
+      } else if (imc > 32.5) {
+        this.cor = Colors.red;
+        return "Obesidade";
+      }
     }
-    resultado = "IMC = ${imc.toStringAsPrecision(2)}";
+  }
+
+  Color getCor() {
+    return cor;
   }
 }
