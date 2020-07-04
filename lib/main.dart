@@ -4,7 +4,6 @@ void main() => runApp(
       MaterialApp(
         home: Home(),
         debugShowCheckedModeBanner: false,
-        
       ),
     );
 
@@ -121,6 +120,11 @@ class _HomeState extends State<Home> {
       child: Text(
         _result,
         textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+          color: Colors.black54,
+        ),
       ),
     );
   }
